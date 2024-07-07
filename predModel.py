@@ -58,6 +58,8 @@ class StockPredModel():
         self.msg("training")
         self.model.fit(self.xTrain, self.yTrain)
         self.getAccuracy()
+        if self.accuracy > 0.5:
+            self.save()
 
     def getAccuracy(self):
         self.accuracy = self.model.score(self.xTest, self.yTest)
@@ -68,21 +70,19 @@ class StockPredModel():
     
     def save(self, filePath: str = ""):
         self.pathToSaved = filePath if filePath else self.pathToSaved
-        with open(self.pathToSaved, "wb") as f:
+        with open(f"models/{self.pathToSaved}", "wb") as f:
             pk.dump(self, f)
 
     def load(self, filePath: str = ""):
         self.pathToSaved = filePath if filePath else self.pathToSaved
-        with open(self.pathToSaved, "rb") as f:
+        with open(f"models/{self.pathToSaved}", "rb") as f:
             self.__dict__.update(pk.load(f).__dict__)
             self.train()
             print("completed")
     
                   
 
-load_dotenv()
-
-model = StockPredModel([os.environ.get("AAPL_PATH"), os.environ.get("TSLA_PATH")], pathToSaved="", msg=infoMsg)
+model = StockPredModel([os.environ.get("AAPL_PATH"), os.environ.get("TSLA_PATH")], msg=infoMsg)
 print(model.accuracy)
 model.train()
 print(model.accuracy)

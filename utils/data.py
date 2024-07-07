@@ -53,9 +53,9 @@ class Data():
         self.value["isYearEnd"]         = np.where(self.value["month"] % 12==0, 1, 0)
 
     def declareFeatures(self):
-        self.value['open-close']        = self.value["Open"]     - self.value['Close/Last']
+        self.value['open-close']        = self.value["Open"]     - self.value['Close']
         self.value['low-high']          = self.value['Low']      - self.value['High']
-        self.value['target']            = np.where(self.value['Close/Last'].shift(-1) > self.value['Close/Last'], 1, 0) #wollen wir herausfinden, steigt oder sinkt Aktie
+        self.value['target']            = np.where(self.value['Close'].shift(-1) > self.value['Close'], 1, 0) #wollen wir herausfinden, steigt oder sinkt Aktie
 
         #data setup
         self.features                   = self.value[["open-close", "low-high", "isQuarterEnd", "isYearEnd"]]

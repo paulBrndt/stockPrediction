@@ -33,7 +33,7 @@ class Data():
     def clearDataTypes(self):
         for col in self.value.columns.tolist():
             if col.lower() == "date":
-                self.value[col] = self.value[col].astype("datetime64[ns]")
+                self.value["Date"] = pd.to_datetime(self.value[col], utc=True)
 
             elif self.value[col].dtype == "object":
                 self.value[col]      = [row.replace("$", "") for row in self.value[col]]

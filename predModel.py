@@ -30,7 +30,8 @@ class StockPredModel():
         self.scaler                 = StandardScaler()
 
         if pathToSaved:
-            if loadAtBeginning: self.load(pathToSaved)
+            if loadAtBeginning:
+                self.load(pathToSaved)
         else:
             self.pathToSaved = "model.pkl"
 
@@ -80,12 +81,19 @@ class StockPredModel():
             self.train()
             print("completed")
     
-                  
+files = os.environ.get("stock_array").replace("'", "").replace(" ", "").split(",")                
 
-model = StockPredModel([os.environ.get("AAPL_PATH"), os.environ.get("TSLA_PATH")], msg=infoMsg)
+model = StockPredModel(os.environ.get("stock_array").replace("'", "").replace(" ", "").split(",")[:5], msg=infoMsg)
 print(model.accuracy)
 model.train()
-print(model.accuracy)
-model.save()
-model.train()
-print(model.accuracy)
+import datetime
+oldTime = datetime.datetime.now()
+for item in files:
+    print(files.index(item))
+    model.addData(item)
+    print(model.accuracy)
+    model.train()
+    model.save()
+    time = datetime.datetime.now()
+    print(time - oldTime)
+    oldTime = time

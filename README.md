@@ -43,8 +43,16 @@ Eine andere und einfachere Möglichkeit ist dir einen Code-Editor wie z.B. [VSCo
 
 ### Ausführen
 
-Führe den Code entweder im Terminal durch `python3 main.py` aus oder in VSCode mithilfe von der Pfeil-Taste oben rechts, wenn du **main.py geöffnet** hast. Evtl. musst du zuvor in der Leiste rechts unten auf Python3.11 drücken und zu .venv ändern
+Erstelle eine Datei mit dem Namen `.env`. Schreibe in diese Datei:
+```
+PATH = "Pfad/zu/Datei"
+```
+Ersetze `Pfad zu Datei` hier duch den Pfad zu **predModel.py**, also z.B. `C:/Users/Michi/Documents/stockPreditction`.
+
+Führe den Code entweder im Terminal durch `python3 predModel.py` aus oder in VSCode mithilfe von der Pfeil-Taste oben rechts, wenn du **main.py geöffnet** hast. Evtl. musst du zuvor in der Leiste rechts unten auf Python3.11 drücken und zu .venv ändern
 
 ### Anpassen
 
 Wenn der Code richtig funktioniert, kann man im Terminal die Genauigkeit des Codes sehen. Man kann mithilfe von Ai-Assistenten, wie z.B. ChatGPT oder Blackbox.ai (für Coding besser), probieren den Code zu verstehen und weiterzuentwickeln
+
+

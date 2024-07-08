@@ -66,3 +66,4 @@ class Data():
         self.xTrain, self.xTest, self.yTrain, self.yTest = train_test_split(
             self.features, self.target, test_size=testSize
         )
+
